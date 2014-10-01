@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>MovieGenie</title>
+	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	  <%= csrf_meta_tags %>
+	  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="icon" 
+		      type="image/png" 
+		      href="assets/movie_genie_flavicon.png">
+	</head>
+
+	<body>
+	<div id="navbar"></div>
+	 <script type="application/json" id="bootstrapped_current_user">
+      <% if !!current_user %>
+        {
+	        "name" : <%= current_user.name.to_json.html_safe %>,
+	        "id" : <%= current_user.id.to_json.html_safe %>,
+	        "genres_saved" : <%= current_user.genres_saved.to_json.html_safe %>,
+	        "all_genres": <%= current_user.genre_interest.to_json.html_safe %>
+    	}
+      <% else %>
+        {"name" : <%= "".to_json.html_safe %>}
+      <% end %>
+	 </script>
+
+	<br>	
+	<div class="container alert-data center-align-class"></div>
+
+
+	<br>
+	
+	<div class="container"><div class="col-xs-12">
+		<%= yield %>
+		</div>
+	</div>
+	<br><br><br>
+	<div class="container col-xs-offset-6" id="loading-data"></div>
+	  
+	<script type="text/javascript">
+	    var currentUserData = JSON.parse($("#bootstrapped_current_user").html());
+	    if (currentUserData.name){
+	      MovieGenie.currentUser = new MovieGenie.Models.User({ name: currentUserData.name,
+	       id: currentUserData.id, genres_saved: currentUserData.genres_saved })
+	      if (window.location.hash !== "users/get_info"){
+		      MovieGenie.setSessionModels(currentUserData)
+		  }
+	    }
+        $(window).bind('storage', function(e) {
+            // alert('change');
+            MovieGenie.otherTabData()
+        });
+        MovieGenie.initialize();
+	</script>
+
+	<!-- Site Meter -->
+	<script type="text/javascript" src="http://s30.sitemeter.com/js/counter.js?site=s30moviegenie">
+	</script>
+
+	<!-- Copyright (c)2009 Site Meter -->
+		
+	</body>
+</html>

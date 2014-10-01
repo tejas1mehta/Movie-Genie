@@ -1,0 +1,9 @@
+<% var addToEnd = "" %>
+<% if (attributeName.substring(0,6) === "Rotten") { %>
+	<% addToEnd = "%" %>
+<% } else if (attributeName === "Run time"){ %>
+	<% addToEnd = " minutes" %>
+<% } %>
+<% if (attribute && attribute != -1 && attribute != 0){ %>
+		<strong> <%= attributeName %>: </strong> <%= attribute + addToEnd %> <br>
+<% } %>	

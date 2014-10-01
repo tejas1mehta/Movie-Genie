@@ -1,0 +1,16 @@
+<% if (true){ %>
+	<div class="row">
+		<div class="row alert alert-dismissable alert-success">
+		  <button type="button" class="close" data-dismiss="alert">×</button>
+		  <strong>Hello!</strong> We predict movie ratings for you based on your interests. Predicted ratings will be shown in yellow, while your ratings will be shown in red. To rate a movie just click on the stars. We will never recommend a movie you have already rated, added to your list or are not interested in - so make sure to rate movies to get new recommendations! 
+		</div>	
+	</div>
+<% } %>
+
+<strong class="heading_bordered"><%= "Movies playing in theatre currently:" %></strong> 
+<a href="#movies/in_theatre" class="btn btn-link">See All</a><br><br>
+<div class="row " id="current-movies"></div>
+
+<strong class="heading_bordered"><%= "Recommended for you:" %></strong>
+<a href="#movies/index" class="btn btn-link">See All</a><br><br>
+<div class="row " id="show-movies"></div>

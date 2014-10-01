@@ -1,0 +1,55 @@
+<div class="row jumbotron" style="padding-left:0.5%; padding-right:0.5%; padding-top:2%; padding-bottom:2%">
+	<div id="main-movie"> </div>
+		<strong style="font-size: 200%;"> <%= movie.escape("title") %> </strong> <br><br>
+		
+		<div style="font-size: 120%;">
+			<strong> Actors: </strong> 
+			<% movie.get("actors").forEach(function(actor){ %>
+				<a href="<%='#casts/'+ actor.id%>"> <span class="label label-success"><%= actor.name %></span></a> &nbsp
+			<%})%><br>
+
+			<% if (movie.get("director")){ %>
+				<strong> Director: </strong> <a href="<%='#casts/'+ movie.get("director").id %>"> <span class="label label-info"><%= movie.get("director").name %></span></a> <br>
+			<% } %>	
+
+			<% if (movie.get("theatre_release_date")){ %>
+				<strong> Date released: </strong> <%= new Date(movie.escape("theatre_release_date")).toDateString()%> <br>
+			<% } %>	
+
+			<%= JST["shared/add_attribute"]({attribute: movie.escape("years_running"), attributeName: "Years"}) %>
+			<%= JST["shared/add_attribute"]({attribute: movie.escape("plot") , attributeName: "Plot"}) %>
+			<%= JST["shared/add_attribute"]({attribute: movie.escape("awards") , attributeName: "Awards"}) %>
+			<%= JST["shared/add_attribute"]({attribute: movie.escape("run_time") , attributeName: "Run time"}) %>
+			<%= JST["shared/add_attribute"]({attribute: movie.escape("rt_audience_score") , attributeName: "Rotten Tomatoes Audience Score"}) %>			
+			<%= JST["shared/add_attribute"]({attribute: movie.escape("rt_critics_score") , attributeName: "Rotten Tomatoes Critics Score"}) %>
+			<%= JST["shared/add_attribute"]({attribute: movie.escape("imdb_rating") , attributeName: "IMDB Rating"}) %>			
+			<strong> Genres: </strong>
+			<% movie.get("genres").forEach(function(genre){ %>
+				<a href="<%='#genres/'+ genre.id%>"> <span class="label label-warning"><%= genre.title %></span></a> &nbsp
+			<%})%>
+		</div>
+	</div>
+</div>
+
+<br>
+<div class="row trailer-reviews" >
+	<% if (movie.get("youtube_trailer")){ %>
+		<div style="float: left; margin-right:30px">
+			<%= movie.get("youtube_trailer") %> <br>
+		</div>
+	<% } %>
+	<% if (movie.get("critic_reviews").length){ %>
+		<div style="font-size: 115%">
+			<strong style="font-size: 125%;"> Critic Reviews from Rotten Tomatoes: </strong> <br><ul>
+			<% movie.get("critic_reviews").forEach(function(critic_review){ %>
+				<% if (critic_review.quote){ %>		
+					<li> <%= "'" + critic_review.quote + "'" %> &nbsp
+					<b><%= "-" + critic_review.critic_name %></b> <br> </li>
+				<% } %>
+			<%})%>
+		</div>
+	<% } %> 
+</div>
+<br>
+<strong style="font-size: 150%;"> People who enjoyed this title also enjoyed: </strong><br><br>
+<div class="row" id="show-movies"></div>

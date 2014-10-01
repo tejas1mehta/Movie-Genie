@@ -1,0 +1,7 @@
+<div class="row" id="show-casts">
+	<strong class="large-text" >Showing Results for "<%= keywords %>"  </strong> <br><br>
+	<% collection.forEach(function(model){ %>
+		<a href="<%='#' + item + 's/'+ model.id %>"> <strong class="search-items"> <%= model.get("name") %> </strong> </a> 
+		<br>
+	<% }) %>
+</div>

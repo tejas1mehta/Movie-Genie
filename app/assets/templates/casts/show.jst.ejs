@@ -1,0 +1,12 @@
+<strong style="font-size: 200%;"> <%= model.escape("name") %> </strong>
+<label for="select" class="control-label">Sort By</label>
+<select id="select_sorting">
+  <option value="predicted_rating">Predicted Rating</option>
+  <option value="date_released" <%= (sortingBy === "date_released") ? "selected" : "" %>>Date Released</option>
+</select>
+<br>
+<br>
+
+<div class="col-xs-offset-3" id="loading-movies"> </div>
+
+<div class="row" id="show-movies"></div>

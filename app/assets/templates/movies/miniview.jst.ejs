@@ -1,0 +1,38 @@
+<div style="height: 315px;">
+	<a href="<%='#movies/'+ movie.id%>">
+		<object data=<%= movie.get("photo_link") %> class="img-responsive" style="height: 280px; margin-left:auto; margin-right:auto" type="image/png">
+			<img class="img-responsive" style="height: 280px; margin-left:auto; margin-right:auto" src="<%= MovieGenie.assetsUrl + 'Image_Unavailable.png' %>">	
+		</object>	
+		<div> <%= movie.escape("title") %> </div> 
+	</a>
+</div>
+<div class="star-rating rating-sm rating-active">
+	<div class="rating-container rating-gly-star" data-content="">
+		<% if (movie.get("rated")){ %>
+			<div class="rating-stars" data-content="" style="width: <%= movie.escape("rating")*20 %>%; color: red">
+			</div>
+		<% } else { %>
+			<div class="rating-stars" data-content="" style="width: <%= movie.escape("predicted_rating")*20 %>%;">
+			</div>
+		<% } %>
+	</div>
+</div>
+
+<% if (!movie.get("listed")){ %>
+	<form id="listMovie" style="display:inline-block">
+  		 <input type="submit" value="Add to List" class="btn btn-primary btn-xs" >
+	</form>
+<% } else { %>
+	<form id="unlistMovie" style="display:inline-block">
+  		 <input type="submit" value="Remove from List" class="btn btn-primary btn-xs" >
+	</form>
+<% } %>
+
+<% if (!movie.get("notInterested")){ %>
+	<form id="notInterestedMovie" style="display:inline-block">
+  		 <input type="submit" value="Not Interested?" class="btn btn-danger btn-xs" >
+	</form>
+<% } %>
+
+<br>
+<br>

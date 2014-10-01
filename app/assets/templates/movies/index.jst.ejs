@@ -1,0 +1,14 @@
+<strong class="heading_bordered">
+	 <%= message %> 
+	<span style="float:right; font-size:85%">
+		<label for="select" class="control-label">Sort By</label>
+		<select id="select_sorting">
+		  <option value="predicted_rating">Predicted Rating</option>
+		  <option value="date_released" <%= (sortingBy === "date_released") ? "selected" : "" %>>Date Released</option>
+		</select>
+	</span>
+</strong>
+<br>
+<br>
+<div class="row " id="show-movies">
+</div>

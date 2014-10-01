@@ -1,0 +1,11 @@
+<h1> Genres </h1>
+<ul class="list-group col-lg-5">
+	<% genres.forEach(function(genre){ %>
+		<li class="list-group-item list-no-border"> <a href=<%= "#genres/" + genre.escape("id") %> ><%= genre.escape("title") %> </a>
+		</li>
+		<% if (genre.id == 9){ %>
+			</ul>
+			<ul class="list-group col-lg-5">
+		<% } %>
+	<% }) %>
+</ul>

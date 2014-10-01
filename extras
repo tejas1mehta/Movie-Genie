@@ -1,0 +1,8 @@
+<% allGenres.forEach(function(genre){ %> 
+	<h3> <%= genre.get("title") %> &nbsp </h3>
+	<div class="star-rating rating-md rating-active">
+		<div id="<%=genre.id%>" class="rating-container rating-gly" data-content="">
+			<div class="rating-stars" data-content="" style="width: 0%;"></div>
+		</div>
+	</div>		
+<% }) %>	

@@ -1,0 +1,25 @@
+<strong style="font-size: 140%;"> Please rate the following genres based on how much you like them. This will help us recommend movies for you. </strong>
+<br>
+<br>
+<ul class="list-group row col-md-4 center-align-class">
+	<% allGenres.forEach(function(genre){ %>
+		<li class="list-group-item list-no-border">
+			<h4> <%= genre.get("title") %> </h4>
+			<div class="star-rating rating-sm rating-active">
+				<div id="<%=genre.id%>" class="rating-container rating-gly" data-content="">
+					<div class="rating-stars" data-content="" style="width: <%= genre.get("percent_interest") ? genre.get("percent_interest") : 0 %>%;"></div>
+				</div>
+			</div>				
+		</li>
+		<% if (genre.id == 6 || genre.id == 12){ %>
+			</ul>
+			<ul class="list-group col-md-4 center-align-class">
+		<% } %>
+	<% }) %>
+</ul>
+<br>
+<br>
+<form id="genre-submit" class="row col-md-12 center-align-class">
+    <input type="submit" class="btn btn-success btn-lg" value="Save">
+</form>
+<br><br><br>
